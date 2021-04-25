@@ -14,7 +14,7 @@ export default function Button({ children, onClick }) {
           cursor: pointer;
           display: flex;
           border-radius: 9999px;
-          font-size: 16px;
+          font-size: 12px;
           font-weight: 800;
           padding: 8px 24px;
           transition: opacity 0.3s ease;

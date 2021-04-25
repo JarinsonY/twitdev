@@ -1,25 +1,30 @@
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import AppLayout from "../components/AppLayout";
-import Button from "../components/Button";
-import GitHub from "../components/Icons/GitHub";
-import { loginWithGitHub, onAuthStateChanged } from "../firebase/client";
-import { colors } from "../styles/theme";
+import Head from "next/head"
+import { useEffect, useState } from "react"
+
+import AppLayout from "components/AppLayout"
+import Avatar from "components/Avatar"
+import Button from "components/Button"
+import GitHub from "components/Icons/GitHub"
+
+import { colors } from "styles/theme"
+
+import { loginWithGitHub, onAuthStateChanged } from "firebase/client"
+import Logo from "components/Icons/Logo"
 
 export default function Home() {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(undefined)
 
   useEffect(() => {
-    onAuthStateChanged(setUser);
-  }, []);
+    onAuthStateChanged(setUser)
+  }, [])
 
   const handleClick = () => {
     loginWithGitHub()
       .then(setUser)
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   return (
     <>
@@ -30,7 +35,7 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          <img src="/devter-logo.png" alt="Logo" />
+          <Logo width="100" />
           <h1>TwitDev</h1>
           <h2>
             Talk about development <br /> with developers 👨‍💻👩‍💻
@@ -45,8 +50,11 @@ export default function Home() {
             )}
             {user && user.avatar && (
               <div>
-                <img src={user.avatar} />
-                <strong>{user.username}</strong>
+                <Avatar
+                  src={user.avatar}
+                  alt={user.username}
+                  text={user.username}
+                />
               </div>
             )}
           </div>
@@ -70,17 +78,18 @@ export default function Home() {
         }
 
         h1 {
-          color: ${colors.secondary};
+          color: ${colors.primary};
           font-weight: 800;
+          font-size: 32px;
           margin-bottom: 16px;
         }
 
         h2 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-size: 21px;
           margin: 0;
         }
       `}</style>
     </>
-  );
+  )
 }
