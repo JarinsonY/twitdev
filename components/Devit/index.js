@@ -1,4 +1,5 @@
 import Avatar from "components/Avatar"
+import useDateTimeFormat from "hooks/useDateTimeFormat"
 import useTimeAgo from "hooks/useTimeAgo"
 
 export default function Devit({
@@ -10,6 +11,7 @@ export default function Devit({
   id,
 }) {
   const timeago = useTimeAgo(createdAt)
+  const createdAtFormated = useDateTimeFormat(createdAt)
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function Devit({
           <header>
             <strong>{userName}</strong>
             <span> · </span>
-            <date>{timeago}</date>
+            <time title={createdAtFormated}>{timeago}</time>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
