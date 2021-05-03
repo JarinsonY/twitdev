@@ -1,12 +1,48 @@
 import Devit from "components/Devit"
+import Head from "next/head"
+import Link from "next/link"
+import Nav from "components/Nav"
 
 export default function DevitPage(props) {
   console.log(props)
 
   return (
     <>
+      <Head>
+        <title>{`Devit | ${props.userName}`}</title>
+      </Head>
+      <header>
+        <Link href="/home">
+          <a>
+            <h2>Devit</h2>
+          </a>
+        </Link>
+      </header>
       <Devit {...props} />
-      <style jsx>{``}</style>
+      <Nav position="absolute" />
+      <style jsx>{`
+        header {
+          align-items: center;
+          background: #ffffffaa;
+          backdrop-filter: blur(5px);
+          border-bottom: 1px solid #eee;
+          height: 49px;
+          display: flex;
+          position: sticky;
+          top: 0;
+          width: 100%;
+        }
+
+        Nav {
+          position: absolute;
+        }
+
+        h2 {
+          font-size: 21px;
+          font-weight: 800;
+          padding-left: 15px;
+        }
+      `}</style>
     </>
   )
 }
