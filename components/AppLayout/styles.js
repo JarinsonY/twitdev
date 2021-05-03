@@ -52,6 +52,19 @@ export default css`
     width: 100%;
   }
 
+  main::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  main::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: ${colors.secondary};
+  }
+
+  main::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
   @media (min-width: ${breakpoints.mobile}) {
     main {
       height: 90vh;
