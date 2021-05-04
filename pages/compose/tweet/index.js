@@ -5,6 +5,7 @@ import { addDevit, uploadImage } from "firebase/client"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Avatar from "components/Avatar"
+import Nav from "components/Nav"
 
 const COMPOSE_STATES = {
   USER_NOT_KNOW: 0,
@@ -121,6 +122,7 @@ export default function ComposeTweet() {
           </div>
         </form>
       </section>
+      <Nav position="absolute" />
       <style jsx>{`
         div {
           padding: 15px;

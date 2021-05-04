@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Create from "components/Icons/Create"
 import Home from "components/Icons/Home"
-import Search from "components/Icons/Search"
 import { colors } from "styles/theme"
 
 export default function Nav({ position }) {
@@ -13,11 +12,11 @@ export default function Nav({ position }) {
             <Home width={32} height={32} stroke="#09f" />
           </a>
         </Link>
-        <Link href="/search">
+        {/* <Link href="/search">
           <a>
             <Search width={32} height={32} stroke="#09f" />
           </a>
-        </Link>
+        </Link> */}
         <Link href="/compose/tweet">
           <a>
             <Create width={32} height={32} stroke="#09f" />
