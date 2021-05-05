@@ -36,6 +36,6 @@ yarn-error.log*
 .eslintcache
 
 # firebase keys
-firebase/firebase-key.json
+
 
 .vercel

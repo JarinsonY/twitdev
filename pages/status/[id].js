@@ -66,15 +66,18 @@ export async function getStaticProps(context) {
 } */
 
 export const getServerSideProps = async (context) => {
+  /* console.log(context) */
   const { params, res } = context
   const { id } = params
 
   const apiResponse = await fetch(`https://twitdev.vercel.app/api/devits/${id}`)
+  console.log(apiResponse)
   if (apiResponse.ok) {
     const props = await apiResponse.json()
     return { props }
   }
   if (res) {
-    res.writeHead(301, { Location: "/home" }).end()
+    return { props: { createdAt: 1620246418830 } }
+    /* res.writeHead(301, { Location: "/home" }).end() */
   }
 }
