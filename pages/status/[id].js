@@ -65,7 +65,7 @@ export async function getStaticProps(context) {
   }
 } */
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = async (context) => {
   const { params, res } = context
   const { id } = params
 
