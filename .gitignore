@@ -40,3 +40,4 @@ firebase/firebase-key.json
 firebase/firebase-keys.json
 
 .vercel
+.env
