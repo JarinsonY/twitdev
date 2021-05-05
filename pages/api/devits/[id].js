@@ -12,7 +12,7 @@ export default (req, res) => {
       const data = doc.data()
       const id = doc.id
       const { createdAt } = data
-
+      res.status(200)
       res.json({
         ...data,
         id,
