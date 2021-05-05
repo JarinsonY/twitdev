@@ -37,3 +37,5 @@ yarn-error.log*
 
 # firebase keys
 firebase/firebase-key.json
+
+.vercel
