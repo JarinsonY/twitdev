@@ -122,7 +122,7 @@ export default function ComposeTweet() {
           </div>
         </form>
       </section>
-      <Nav position="absolute" />
+      <Nav position={imgURL ? "inherit" : "absolute"} />
       <style jsx>{`
         div {
           padding: 15px;
