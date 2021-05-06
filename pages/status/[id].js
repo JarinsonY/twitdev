@@ -77,7 +77,7 @@ export const getServerSideProps = async (context) => {
     return { props }
   }
   if (res) {
-    return { props: { createdAt: 1620246418830 } }
-    /* res.writeHead(301, { Location: "/home" }).end() */
+    /* return { props: { createdAt: 1620246418830 } } */
+    res.writeHead(301, { Location: "/home" }).end()
   }
 }

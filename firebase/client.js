@@ -72,3 +72,18 @@ export const uploadImage = (file) => {
 
   return task
 }
+
+export const likeDevit = (doc, likesCount) => {
+  return db
+    .collection("devits")
+    .doc(doc)
+    .update({
+      likesCount: likesCount + 1,
+    })
+    .then(() => {
+      console.log("Diste Like")
+    })
+    .catch((error) => {
+      console.log("Hubo un error: ", error)
+    })
+}
