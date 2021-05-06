@@ -2,6 +2,7 @@ import Link from "next/link"
 import Create from "components/Icons/Create"
 import Home from "components/Icons/Home"
 import { colors } from "styles/theme"
+import User from "components/Icons/User"
 
 export default function Nav({ position }) {
   return (
@@ -20,6 +21,11 @@ export default function Nav({ position }) {
         <Link href="/compose/tweet">
           <a>
             <Create width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Link href="/profile">
+          <a>
+            <User width={32} height={32} stroke="#09f" />
           </a>
         </Link>
       </nav>

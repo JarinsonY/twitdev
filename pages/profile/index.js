@@ -1,31 +1,30 @@
 import Devit from "components/Devit"
 import Nav from "components/Nav"
 
-import { listenLatestDevits } from "firebase/client"
+import { devitsProfile } from "firebase/client"
 import useUser from "hooks/useUser"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 
-export default function HomePage() {
+export default function ProfilePage() {
   const [timeline, setTimeline] = useState([])
   const user = useUser()
 
   useEffect(() => {
     let unsubscribe
     if (user) {
-      unsubscribe = listenLatestDevits(setTimeline)
+      unsubscribe = devitsProfile(setTimeline, user.uid)
     }
     return () => unsubscribe && unsubscribe()
   }, [user])
 
-  console.log(timeline)
   return (
     <>
       <Head>
         <title>Inicio | TwitDev</title>
       </Head>
       <header>
-        <h2>Inicio</h2>
+        <h2>Your Devits</h2>
       </header>
       <section>
         {timeline.map(
