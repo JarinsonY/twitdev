@@ -1,4 +1,5 @@
 import Devit from "components/Devit"
+import Logo from "components/Icons/Logo"
 import Nav from "components/Nav"
 
 import { devitsProfile } from "firebase/client"
@@ -24,6 +25,9 @@ export default function ProfilePage() {
         <title>Inicio | TwitDev</title>
       </Head>
       <header>
+        <div>
+          <Logo width="18" />
+        </div>
         <h2>Your Devits</h2>
       </header>
       <section>
@@ -64,6 +68,10 @@ export default function ProfilePage() {
           position: sticky;
           top: 0;
           width: 100%;
+        }
+
+        div {
+          margin-left: 15px;
         }
 
         section {

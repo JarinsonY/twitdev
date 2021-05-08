@@ -1,4 +1,5 @@
 import Devit from "components/Devit"
+import Logo from "components/Icons/Logo"
 import Nav from "components/Nav"
 
 import { listenLatestDevits } from "firebase/client"
@@ -18,13 +19,15 @@ export default function HomePage() {
     return () => unsubscribe && unsubscribe()
   }, [user])
 
-  console.log(timeline)
   return (
     <>
       <Head>
         <title>Inicio | TwitDev</title>
       </Head>
       <header>
+        <div>
+          <Logo width="18" />
+        </div>
         <h2>Inicio</h2>
       </header>
       <section>
@@ -69,6 +72,10 @@ export default function HomePage() {
 
         section {
           flex: 1;
+        }
+
+        div {
+          margin-left: 15px;
         }
 
         h2 {

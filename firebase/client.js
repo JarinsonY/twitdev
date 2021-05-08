@@ -69,24 +69,12 @@ export const listenLatestDevits = (callback) => {
 export const devitsProfile = (callback, uid) => {
   db.collection("devits")
     .where("userId", "==", uid)
+    .orderBy("createdAt", "desc")
     .onSnapshot(({ docs }) => {
       const newDevits = docs.map(mapDevitFromFirebaseToDevitObject)
       /* console.log(newDevits) */
       callback(newDevits)
     })
-  /* .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        /* const datas = doc.data()
-        devs.push(datas) 
-        const newDevits = doc.map(mapDevitFromFirebaseToDevitObject)
-        console.log(newDevits)
-        return newDevits
-      })
-    }) 
-    .catch((e) => {
-      return console.log(e)
-    }) */
 }
 
 export const uploadImage = (file) => {
@@ -103,9 +91,7 @@ export const likeDevit = (doc, likesCount) => {
     .update({
       likesCount: likesCount + 1,
     })
-    .then(() => {
-      console.log("Diste Like")
-    })
+    .then(() => {})
     .catch((error) => {
       console.log("Hubo un error: ", error)
     })

@@ -25,7 +25,12 @@ export default function Nav({ position }) {
         </Link>
         <Link href="/profile">
           <a>
-            <User width={32} height={32} stroke="#09f" />
+            <User
+              width={32}
+              height={32}
+              stroke="#09f"
+              avatar="https://avatars.githubusercontent.com/u/19658821?v=4"
+            />
           </a>
         </Link>
       </nav>
