@@ -64,6 +64,7 @@ export default function Devit({
           </div>
         </section>
       </article>
+
       <style jsx>{`
         header {
           display: grid;
@@ -128,6 +129,7 @@ export default function Devit({
 
         .likes:hover > :global(svg) {
           stroke: ${colors.secondary};
+        }
       `}</style>
     </>
   )

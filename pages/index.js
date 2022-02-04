@@ -6,7 +6,7 @@ import GitHub from "components/Icons/GitHub"
 
 import { colors } from "styles/theme"
 
-import Logo from "components/Icons/Logo"
+/* import Logo from "components/Icons/Logo" */
 
 import { loginWithGitHub } from "firebase/client"
 
@@ -31,11 +31,12 @@ export default function Home() {
     <>
       <Head>
         <title>👨‍💻 TwitDev 👩‍💻</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <section>
-        <Logo width="100" />
+        {/* <Logo width="100" /> */}
+        <img src='/TwitDevLogo.png' />
         <h1>TwitDev</h1>
         <h2>
           Talk about development <br /> with developers 👨‍💻👩‍💻
@@ -58,7 +59,7 @@ export default function Home() {
         }
 
         div {
-          margin-top: 16px;
+          margin-top: 24px;
         }
 
         section {
@@ -72,7 +73,6 @@ export default function Home() {
           color: ${colors.primary};
           font-weight: 800;
           font-size: 32px;
-          margin-bottom: 16px;
         }
 
         h2 {

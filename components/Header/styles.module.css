@@ -1,0 +1,23 @@
+.header {
+    align-items: center;
+    background: #ffffffaa;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #eee;
+    height: 57px;
+    display: flex;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.container {
+    /* display: flex;
+    align-items: center; */
+    margin-left: 15px;
+}
+
+.h2 {
+    font-size: 21px;
+    font-weight: 800;
+    padding-left: 15px;
+}

@@ -1,5 +1,5 @@
 import Devit from "components/Devit"
-import Logo from "components/Icons/Logo"
+import Header from "components/Header"
 import Nav from "components/Nav"
 
 import { listenLatestDevits } from "firebase/client"
@@ -24,12 +24,7 @@ export default function HomePage() {
       <Head>
         <title>Inicio | TwitDev</title>
       </Head>
-      <header>
-        <div>
-          <Logo width="18" />
-        </div>
-        <h2>Inicio</h2>
-      </header>
+     <Header titlePage='Home' />
       <section>
         {timeline.map(
           ({
@@ -58,31 +53,11 @@ export default function HomePage() {
       </section>
       <Nav position="sticky" />
       <style jsx>{`
-        header {
-          align-items: center;
-          background: #ffffffaa;
-          backdrop-filter: blur(5px);
-          border-bottom: 1px solid #eee;
-          height: 49px;
-          display: flex;
-          position: sticky;
-          top: 0;
-          width: 100%;
-        }
 
         section {
           flex: 1;
         }
 
-        div {
-          margin-left: 15px;
-        }
-
-        h2 {
-          font-size: 21px;
-          font-weight: 800;
-          padding-left: 15px;
-        }
       `}</style>
     </>
   )

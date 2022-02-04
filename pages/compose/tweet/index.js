@@ -34,9 +34,9 @@ export default function ComposeTweet() {
 
   useEffect(() => {
     if (task) {
-      let onProgress = () => {}
-      let onError = () => {}
-      let onComplete = () => {
+      const onProgress = () => { }
+      const onError = () => { }
+      const onComplete = () => {
         console.log("onComplete")
         task.snapshot.ref.getDownloadURL().then(setImgURL)
       }
@@ -156,6 +156,7 @@ export default function ComposeTweet() {
         }
 
         form {
+          flex: 1 1 auto;
           padding: 10px;
         }
 
@@ -167,8 +168,8 @@ export default function ComposeTweet() {
 
         textarea {
           border: ${drag === DRAG_IMAGE_STATES.DRAG_OVER
-            ? "3px dashed #09f"
-            : "3px solid transparent"};
+          ? "3px dashed #09f"
+          : "3px solid #E5E5E5"};
           border-radius: 10px;
           font-size: 21px;
           min-height: 200px;
@@ -177,6 +178,9 @@ export default function ComposeTweet() {
           resize: none;
           width: 100%;
         }
+          textarea:hover {
+            border: 3px solid #09f;
+          }
       `}</style>
     </>
   )

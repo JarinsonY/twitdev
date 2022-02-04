@@ -1,5 +1,5 @@
 import Devit from "components/Devit"
-import Logo from "components/Icons/Logo"
+import Header from "components/Header"
 import Nav from "components/Nav"
 
 import { devitsProfile } from "firebase/client"
@@ -24,12 +24,11 @@ export default function ProfilePage() {
       <Head>
         <title>Inicio | TwitDev</title>
       </Head>
-      <header>
-        <div>
-          <Logo width="18" />
-        </div>
-        <h2>Your Devits</h2>
-      </header>
+      <Header titlePage='Your Devits' />
+      {user && (<main>
+        <img src={user.avatar} />
+        <p className="username">{user.username}</p>
+      </main>)}
       <section>
         {timeline.map(
           ({
@@ -72,6 +71,26 @@ export default function ProfilePage() {
 
         div {
           margin-left: 15px;
+        }
+
+        main {
+          width: 100%;
+          padding: 24px;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          background: #ffffffaa;
+        }
+
+        img {
+          width: 150px;
+          border-radius: 9999px;
+        }
+
+        .username {
+          margin: 16px 0;
+          font-size: 18px;
+          font-weight: 600;
         }
 
         section {

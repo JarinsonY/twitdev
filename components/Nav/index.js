@@ -41,7 +41,7 @@ export default function Nav({ position }) {
           bottom: 0;
           border-top: 1px solid #eee;
           display: flex;
-          height: 49px;
+          height: 57px;
           position: ${position};
           width: 100%;
         }
