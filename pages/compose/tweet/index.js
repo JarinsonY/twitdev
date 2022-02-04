@@ -94,7 +94,7 @@ export default function ComposeTweet() {
   return (
     <>
       <Head>
-        <title>Crear Devit | TwitDev</title>
+        <title>New Devit | TwitDev</title>
       </Head>
       <section className="form-container">
         {user && (

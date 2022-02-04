@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Inicio | TwitDev</title>
+        <title>Home | TwitDev</title>
       </Head>
      <Header titlePage='Home' />
       <section>

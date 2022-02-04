@@ -30,6 +30,10 @@ export const loginWithGitHub = () => {
   return firebase.auth().signInWithRedirect(githubProvider)
 }
 
+export const logout = () => {
+  return firebase.auth().signOut()
+}
+
 export const addDevit = ({ avatar, content, img, userId, userName }) => {
   return db.collection("devits").add({
     avatar,

@@ -1,4 +1,5 @@
 import Devit from "components/Devit"
+import Dropdown from "components/Dropdown"
 import Header from "components/Header"
 import Nav from "components/Nav"
 
@@ -22,13 +23,18 @@ export default function ProfilePage() {
   return (
     <>
       <Head>
-        <title>Inicio | TwitDev</title>
+        <title>Profile | TwitDev</title>
       </Head>
       <Header titlePage='Your Devits' />
-      {user && (<main>
-        <img src={user.avatar} />
-        <p className="username">{user.username}</p>
-      </main>)}
+      <main>
+        {user && (
+          <>
+            <img src={user.avatar} />
+            <p className="username">{user.username}</p>
+          </>
+        )}
+      <Dropdown />
+      </main>
       <section>
         {timeline.map(
           ({
@@ -75,7 +81,7 @@ export default function ProfilePage() {
 
         main {
           width: 100%;
-          padding: 24px;
+          padding: 24px 16px;
           display: flex;
           align-items: center;
           flex-direction: column;

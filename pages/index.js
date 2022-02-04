@@ -31,7 +31,6 @@ export default function Home() {
     <>
       <Head>
         <title>👨‍💻 TwitDev 👩‍💻</title>
-        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <section>
