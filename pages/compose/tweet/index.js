@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import Avatar from "components/Avatar"
 import Nav from "components/Nav"
+import Clip from "components/Icons/Clip"
 
 const COMPOSE_STATES = {
   USER_NOT_KNOW: 0,
@@ -88,6 +89,12 @@ export default function ComposeTweet() {
     setTask(task)
   }
 
+  const handleChangeInput = (e) => {
+    const file = e.target.files[0]
+    const task = uploadImage(file)
+    setTask(task)
+  }
+
   const isButtonDisabled =
     message.length === 0 || status === COMPOSE_STATES.LOADING
 
@@ -111,20 +118,24 @@ export default function ComposeTweet() {
             placeholder="¿Qué está pasando?"
             value={message}
           ></textarea>
+          <div className="icon-clip">
+            <label htmlFor="img"><Clip width={32} height={32} stroke="#09f" /></label>
+            <input type="file" id="img" name="img" accept="image/*" onChange={(e) => handleChangeInput(e)} />
+          </div>
           {imgURL && (
             <section className="remove-img">
               <button onClick={() => setImgURL(null)}>x</button>
               <img src={imgURL} />
             </section>
           )}
-          <div>
+          <div className="divButton">
             <Button disabled={isButtonDisabled}>Devitear</Button>
           </div>
         </form>
       </section>
       <Nav position={imgURL ? "inherit" : "absolute"} />
       <style jsx>{`
-        div {
+        .divButton {
           padding: 15px;
         }
 
@@ -178,9 +189,25 @@ export default function ComposeTweet() {
           resize: none;
           width: 100%;
         }
-          textarea:hover {
-            border: 3px solid #09f;
-          }
+
+        textarea:hover {
+          border: 3px solid #09f;
+        }
+
+        .icon-clip{
+          width: fit-content;
+          position: absolute;
+          right: 24px;
+          top: 24px;
+        }
+
+        label{
+          cursor: pointer;
+        }
+
+        input {
+          display: none;
+        }
       `}</style>
     </>
   )
