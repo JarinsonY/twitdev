@@ -3,6 +3,7 @@ import Heart from "components/Icons/Heart"
 import { likeDevit } from "firebase/client"
 import useDateTimeFormat from "hooks/useDateTimeFormat"
 import useTimeAgo from "hooks/useTimeAgo"
+import useUser from "hooks/useUser"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { colors } from "styles/theme"
@@ -18,6 +19,7 @@ export default function Devit({
 }) {
   const timeago = useTimeAgo(createdAt)
   const createdAtFormated = useDateTimeFormat(createdAt)
+  const user = useUser()
   const router = useRouter()
 
   const handleArticleClick = (e) => {
@@ -27,7 +29,7 @@ export default function Devit({
 
   const handleLikeClick = (e) => {
     e.preventDefault()
-    likeDevit(id, likesCount)
+    likeDevit(id, user.uid, likesCount)
       .then(() => {
         console.log("You liked")
       })

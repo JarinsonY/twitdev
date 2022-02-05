@@ -27,6 +27,7 @@ export const onAuthStateChanged = (onChange) => {
 
 export const loginWithGitHub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider()
+  localStorage.setItem('userLikedPosts', '');
   return firebase.auth().signInWithRedirect(githubProvider)
 }
 
@@ -88,15 +89,57 @@ export const uploadImage = (file) => {
   return task
 }
 
-export const likeDevit = (doc, likesCount) => {
+const getPostsLiked = (uid) => {
+  db.collection("userLikes")
+    .doc(uid)
+    .onSnapshot((doc) => {
+      const { likesPosts } = doc.data()
+      /* localStorage.setItem('likedPosts', JSON.stringify(likesPosts)); */
+      localStorage.setItem('userLikedPosts', likesPosts);
+    })
+}
+
+export const likeDevit = (post, userId, likesCount) => {
+
+  /* Save in local storage posts liked user */
+  getPostsLiked(userId)
+
+  /* Get posts liked  */
+  /* const dataLocalStorage = JSON.parse(localStorage.getItem('likedPosts')); */
+  const dataLocalStorage2 = localStorage.getItem('userLikedPosts');
+  const arrayData = dataLocalStorage2.split(',').filter(post => post !== '')
+
+
+  /* Add document in user posts liked */
+  const validate = arrayData.find(doc => doc === post)
+
+  /* Already like it */
+  validate !== undefined
+    && db.collection("userLikes").doc(userId).set({
+      likesPosts: arrayData.filter(doc => doc !== post)
+    })
+
+  /* Haven't liked it */
+  validate === undefined
+    && db.collection("userLikes").doc(userId).set({
+      likesPosts: arrayData.concat(post)
+    })
+
+  /* arrayData.find(doc => doc === post)
+    ? console.log("Hubo un error")
+    : (db.collection("userLikes").doc(userId).set({
+      likesPosts: arrayData.concat(post)
+    })) */
+
   return db
     .collection("devits")
-    .doc(doc)
+    .doc(post)
     .update({
-      likesCount: likesCount + 1,
+      likesCount: validate === undefined ? likesCount + 1 : likesCount - 1,
     })
-    .then(() => {})
+    .then(() => { })
     .catch((error) => {
       console.log("Hubo un error: ", error)
     })
+
 }
