@@ -51,11 +51,16 @@ export default function HomePage() {
           )
         )}
       </section>
-      <Nav position="sticky" />
+      <Nav position="fixed" />
       <style jsx>{`
 
         section {
-          flex: 1;
+          /* flex: 1; */
+          flex: 1 1 auto;
+         overflow-y: auto;
+         height: calc(100% - 57px);
+    position: absolute;
+    padding-top: 57px;
         }
 
       `}</style>
