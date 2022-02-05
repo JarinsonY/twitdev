@@ -89,7 +89,7 @@ export const uploadImage = (file) => {
   return task
 }
 
-const getPostsLiked = (uid) => {
+export const getPostsLiked = (uid) => {
   db.collection("userLikes")
     .doc(uid)
     .onSnapshot((doc) => {
@@ -101,8 +101,7 @@ const getPostsLiked = (uid) => {
 
 export const likeDevit = (post, userId, likesCount) => {
 
-  /* Save in local storage posts liked user */
-  getPostsLiked(userId)
+  
 
   /* Get posts liked  */
   /* const dataLocalStorage = JSON.parse(localStorage.getItem('likedPosts')); */

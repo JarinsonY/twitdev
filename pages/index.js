@@ -8,7 +8,7 @@ import { colors } from "styles/theme"
 
 /* import Logo from "components/Icons/Logo" */
 
-import { loginWithGitHub } from "firebase/client"
+import { getPostsLiked, loginWithGitHub } from "firebase/client"
 
 import { useRouter } from "next/router"
 import useUser, { USER_STATES } from "hooks/useUser"
@@ -19,6 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     user && router.replace("/home")
+    /* Save in local storage posts liked user */
+    user && getPostsLiked(user.uid)
   }, [user])
 
   const handleClick = () => {
