@@ -101,8 +101,6 @@ export const getPostsLiked = (uid) => {
 
 export const likeDevit = (post, userId, likesCount) => {
 
-  
-
   /* Get posts liked  */
   /* const dataLocalStorage = JSON.parse(localStorage.getItem('likedPosts')); */
   const dataLocalStorage2 = localStorage.getItem('userLikedPosts');
@@ -116,13 +114,13 @@ export const likeDevit = (post, userId, likesCount) => {
   validate !== undefined
     && db.collection("userLikes").doc(userId).set({
       likesPosts: arrayData.filter(doc => doc !== post)
-    })
+    })/* .then(console.log("You don't like it anymore")) */
 
   /* Haven't liked it */
   validate === undefined
     && db.collection("userLikes").doc(userId).set({
       likesPosts: arrayData.concat(post)
-    })
+    })/* .then(console.log("You like it")) */
 
   /* arrayData.find(doc => doc === post)
     ? console.log("Hubo un error")

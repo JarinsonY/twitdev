@@ -24,7 +24,7 @@ export default function HomePage() {
       <Head>
         <title>Home | TwitDev</title>
       </Head>
-     <Header titlePage='Home' />
+      <Header titlePage='Home' />
       <section>
         {timeline.map(
           ({

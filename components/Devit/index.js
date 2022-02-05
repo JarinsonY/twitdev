@@ -30,12 +30,17 @@ export default function Devit({
   const handleLikeClick = (e) => {
     e.preventDefault()
     likeDevit(id, user.uid, likesCount)
-      .then(() => {
-        console.log("You liked")
-      })
+      .then()
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  const likeIt = () => {
+    /* Validate I like it */
+    const dataLocalStorage2 = localStorage.getItem('userLikedPosts');
+    const arrayData = dataLocalStorage2.split(',').find(doc => doc === id)
+    return Boolean(arrayData)
   }
 
   return (
@@ -57,7 +62,7 @@ export default function Devit({
             </div>
             <div className="likes" onClick={handleLikeClick}>
               <span>{likesCount} </span>
-              <Heart stroke="#09f" className="heart" fill="#09f" />
+              <Heart width={28} height={28} stroke="#09f" className="heart" fill={likeIt() ? '#09f' : 'transparent'} />
             </div>
           </header>
           <div onClick={handleArticleClick}>
@@ -69,8 +74,9 @@ export default function Devit({
 
       <style jsx>{`
         header {
-          display: grid;
           width: 100%;
+          display: grid;
+          align-items: center;
           grid-template-columns: repeat(2, 1fr);
         }
 
@@ -79,7 +85,9 @@ export default function Devit({
 
         .likes {
           display: flex;
+          padding: 0 0 0 5px;
           justify-self: end;
+          align-items: center;
         }
 
         section {
