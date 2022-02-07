@@ -24,11 +24,12 @@ export default function Dropdown() {
           font-size: 16px;
           border: none;
           border-radius: 16px;
+          width: 43px;
           cursor: pointer;
         }
 
         .dropdown {
-          position: absolute;
+          /* position: absolute; */
           display: inline-block;
           right: 16px;
         }

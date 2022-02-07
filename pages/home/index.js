@@ -6,6 +6,7 @@ import { listenLatestDevits } from "firebase/client"
 import useUser from "hooks/useUser"
 import Head from "next/head"
 import { useEffect, useState } from "react"
+import { colors } from "styles/theme"
 
 export default function HomePage() {
   const [timeline, setTimeline] = useState([])
@@ -51,16 +52,30 @@ export default function HomePage() {
           )
         )}
       </section>
-      <Nav position="fixed" />
+      <Nav />
       <style jsx>{`
 
         section {
           /* flex: 1; */
           flex: 1 1 auto;
-         overflow-y: auto;
-         height: calc(100% - 57px);
-    position: absolute;
-    padding-top: 57px;
+          overflow-y: auto;
+          height: calc(100% - 57px);
+          position: absolute;
+          padding-top: 57px;
+        }
+
+        section::-webkit-scrollbar {
+          width: 7px;
+        }
+
+        section::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background: ${colors.secondary};
+        }
+
+        section::-webkit-scrollbar-track {
+          border-radius: 10px;
+          margin-top: 57px;
         }
 
       `}</style>

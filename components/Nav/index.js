@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Create from "components/Icons/Create"
 import Home from "components/Icons/Home"
-import { colors } from "styles/theme"
+import { breakpoints, colors } from "styles/theme"
 import User from "components/Icons/User"
 
 export default function Nav({ position }) {
@@ -42,9 +42,15 @@ export default function Nav({ position }) {
           border-top: 1px solid #eee;
           display: flex;
           height: 57px;
-          position: ${position};
+          position: ${position || 'fixed'};
           width: 100%;
           flex: 0 1 auto;
+        }
+
+        @media screen and (min-width: ${breakpoints.mobile}) {
+          nav {
+            position: absolute;
+          }
         }
 
         nav a {
