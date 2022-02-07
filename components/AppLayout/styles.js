@@ -58,7 +58,7 @@ export default css`
 
   main::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: ${colors.secondary};
+    background: ${colors.tertiary};
   }
 
   main::-webkit-scrollbar-track {

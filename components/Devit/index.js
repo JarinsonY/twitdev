@@ -62,7 +62,7 @@ export default function Devit({
             </div>
             <div className="likes" onClick={handleLikeClick}>
               <span>{likesCount} </span>
-              <Heart width={28} height={28} stroke="#09f" className="heart" fill={likeIt() ? '#09f' : 'transparent'} />
+              <Heart width={28} height={28} stroke={colors.secondary} className="heart" fill={likeIt() ? colors.primary : 'transparent'} />
             </div>
           </header>
           <div onClick={handleArticleClick}>

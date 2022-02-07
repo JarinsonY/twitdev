@@ -10,9 +10,9 @@ export default function Button({ disabled, children, onClick }) {
       <style jsx>{`
         button {
           align-items: center;
-          background: ${colors.black};
+          background: ${colors.quaternary};
           border: 0;
-          color: #fff;
+          color: ${colors.white};
           cursor: pointer;
           display: flex;
           border-radius: 9999px;

@@ -10,7 +10,7 @@ export default function Nav({ position }) {
       <nav>
         <Link href="/home">
           <a>
-            <Home width={32} height={32} stroke="#09f" />
+            <Home width={32} height={32} stroke={colors.primary} />
           </a>
         </Link>
         {/* <Link href="/search">
@@ -20,7 +20,7 @@ export default function Nav({ position }) {
         </Link> */}
         <Link href="/compose/tweet">
           <a>
-            <Create width={32} height={32} stroke="#09f" />
+            <Create width={32} height={32} stroke={colors.primary} />
           </a>
         </Link>
         <Link href="/profile">
@@ -28,7 +28,7 @@ export default function Nav({ position }) {
             <User
               width={32}
               height={32}
-              stroke="#09f"
+              stroke={colors.primary}
               avatar="https://avatars.githubusercontent.com/u/19658821?v=4"
             />
           </a>
@@ -63,13 +63,13 @@ export default function Nav({ position }) {
         }
 
         nav a:hover {
-          background: radial-gradient(#0099ff22 15%, transparent 16%);
+          background: radial-gradient(${colors.primary}22 15%, transparent 16%);
           background-size: 180px 180px;
           background-position: center;
         }
 
-        nav a:hover > :globla(svg) {
-          stroke: ${colors.primary};
+        nav a:hover > :global(svg) {
+          stroke: ${colors.secondary};
         }
       `}</style>
     </>

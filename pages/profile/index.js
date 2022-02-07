@@ -92,6 +92,7 @@ export default function ProfilePage() {
         img {
           width: 150px;
           border-radius: 9999px;
+          outline: 5px inset ${colors.primary};
         }
 
         .username {
@@ -134,7 +135,7 @@ export default function ProfilePage() {
 
         .container::-webkit-scrollbar-thumb {
           border-radius: 10px;
-          background: ${colors.secondary};
+          background: ${colors.primary};
         }
 
         .container::-webkit-scrollbar-track {

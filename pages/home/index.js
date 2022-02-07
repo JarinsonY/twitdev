@@ -70,7 +70,7 @@ export default function HomePage() {
 
         section::-webkit-scrollbar-thumb {
           border-radius: 10px;
-          background: ${colors.secondary};
+          background: ${colors.primary};
         }
 
         section::-webkit-scrollbar-track {

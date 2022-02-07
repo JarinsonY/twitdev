@@ -18,7 +18,7 @@ export default function Dropdown() {
       </div>
       <style jsx>{`
         .dropbtn {
-          background-color: ${colors.secondary};
+          background-color: ${colors.primary};
           color: white;
           padding: 16px;
           font-size: 16px;
@@ -38,7 +38,7 @@ export default function Dropdown() {
           display: none;
           position: absolute;
           border-radius: 10px;
-          margin-top: 2px;
+          margin: 0px 16px auto auto;
           right: 0;
           background-color: #f9f9f9;
           min-width: 160px;
@@ -47,22 +47,28 @@ export default function Dropdown() {
         }
 
         .dropdown-content a {
-          color: black;
+          color: ${colors.black};
           cursor: pointer;
           border-radius: 10px;
           padding: 12px 16px;
           text-decoration: none;
           display: block;
+          transition: .3s ease-in-out;
         }
 
-        .dropdown-content a:hover {background-color: ${colors.secondary};}
+        .dropdown-content a:hover {
+          background-color: ${colors.quaternary};
+          color: ${colors.white};
+          transition: .2s ease-in-out;
+        }
 
         .dropdown:hover .dropdown-content {
           display: block;
         }
 
         .dropdown:hover .dropbtn {
-          background-color: ${colors.primary};
+          background-color: ${colors.quinary};
+          transition: .3s ease-in-out;
         }
       `}</style>
     </>

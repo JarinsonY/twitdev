@@ -36,17 +36,20 @@ export default function Home() {
       </Head>
 
       <section>
-        {/* <Logo width="100" /> */}
-        <img src='/TwitDevLogo.png' />
-        <h1>TwitDev</h1>
-        <h2>
-          Talk about development <br /> with developers 👨‍💻👩‍💻
-        </h2>
+        <div className='divLogo'>
+          {/* <Logo width="100" /> */}
+          <img src='/TwitDevLogo.png' />
+          <h1>TwitDev</h1>
+        </div>
 
-        <div>
+        <div className='divContent'>
+          <h2>
+            Talk about development <br /> with developers 👨‍💻👩‍💻
+          </h2>
+
           {user === USER_STATES.NOT_LOGGED && (
             <Button onClick={handleClick}>
-              <GitHub fill="#fff" width={24} height={24} />
+              <GitHub fill={colors.white} width={24} height={24} />
               Login with GitHub
             </Button>
           )}
@@ -57,15 +60,13 @@ export default function Home() {
       <style jsx>{`
         img {
           width: 120px;
-        }
-
-        div {
-          margin-top: 24px;
+          align-self: center;
         }
 
         section {
           display: grid;
           height: 100%;
+          row-gap: 24px;
           place-content: center;
           place-items: center;
         }
@@ -74,12 +75,20 @@ export default function Home() {
           color: ${colors.primary};
           font-weight: 800;
           font-size: 32px;
+          margin: auto;
         }
 
         h2 {
-          color: ${colors.secondary};
-          font-size: 21px;
+          color: ${colors.quinary};
+          font: caption;
+          text-align: center;
           margin: 0;
+        }
+
+        .divContent {
+          display: flex;
+          flex-direction: column;
+          row-gap: 24px;
         }
       `}</style>
     </>
