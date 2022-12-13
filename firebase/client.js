@@ -45,6 +45,7 @@ export const addDevit = ({ avatar, content, img, userId, userName }) => {
     createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
     likesCount: 0,
     sharedCount: 0,
+    forUniversity: true,
   })
 }
 
