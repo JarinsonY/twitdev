@@ -1,15 +1,19 @@
+import { Modal, Button, Text } from "@nextui-org/react";
 import Avatar from "components/Avatar"
 import Heart from "components/Icons/Heart"
-import { likeDevit } from "firebase/client"
+import Trash from "components/Icons/Trash"
+import { deleteDevit, likeDevit } from "firebase/client"
 import useDateTimeFormat from "hooks/useDateTimeFormat"
 import useTimeAgo from "hooks/useTimeAgo"
 import useUser from "hooks/useUser"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useState } from "react"
 import { colors } from "styles/theme"
 
 export default function Devit({
   avatar,
+  userId,
   userName,
   content,
   createdAt,
@@ -21,6 +25,13 @@ export default function Devit({
   const createdAtFormated = useDateTimeFormat(createdAt)
   const user = useUser()
   const router = useRouter()
+  const [visible, setVisible] = useState(false);
+  const handler = () => setVisible(true);
+
+  const closeHandler = () => {
+    setVisible(false);
+    // console.log("closed");
+  };
 
   const handleArticleClick = (e) => {
     e.preventDefault()
@@ -34,6 +45,11 @@ export default function Devit({
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  const handleDeleteClick = () => {
+    deleteDevit(id);
+    setVisible(false);
   }
 
   const likeIt = () => {
@@ -60,9 +76,16 @@ export default function Devit({
                 </a>
               </Link>
             </div>
-            <div className="likes" onClick={handleLikeClick}>
-              <span>{likesCount} </span>
-              <Heart width={28} height={28} stroke={colors.secondary} className="heart" fill={likeIt() ? colors.primary : 'transparent'} />
+            <div className="rightContent">
+              <div className="likes" onClick={handleLikeClick}>
+                <span>{likesCount} </span>
+                <Heart width={28} height={28} stroke={colors.secondary} className="heart" fill={likeIt() ? colors.primary : 'transparent'} />
+              </div>
+              {user?.uid === userId && (
+                <div className="likes" onClick={handler}>
+                  <Trash width={28} height={28} stroke={colors.red} />
+                </div>
+              )}
             </div>
           </header>
           <div onClick={handleArticleClick}>
@@ -71,6 +94,36 @@ export default function Devit({
           </div>
         </section>
       </article>
+
+      {/* Modal for delete Devit */}
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={visible}
+        onClose={closeHandler}
+      >
+        <Modal.Header>
+          <Text id="modal-title" size={18}>
+            Eliminar{' '}
+            <Text b size={18}>
+              Devit
+            </Text>
+          </Text>
+        </Modal.Header>
+        <Modal.Body>
+          <Text>
+            ¿Seguro que quieres eliminar este Devit? No se puede deshacer.
+          </Text>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button auto flat color="error" onClick={closeHandler}>
+            No, cancelar
+          </Button>
+          <Button auto onClick={handleDeleteClick}>
+            Sí, eliminar
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <style jsx>{`
         header {
@@ -83,9 +136,21 @@ export default function Devit({
         .info {
         }
 
+        .rightContent {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+
         .likes {
           display: flex;
           padding: 0 0 0 5px;
+          justify-self: end;
+          align-items: center;
+        }
+
+        .delete {
+          display: flex;
           justify-self: end;
           align-items: center;
         }

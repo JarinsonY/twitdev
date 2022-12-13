@@ -10,6 +10,7 @@ export const fonts = {
 export const colors = {
   black: "#000000",
   white: "#ffffff",
+  red: "#A80A0A",
   primary: "#0049FF",     /* Blue RYB */
   primary2: "#0049ff",
   secondary: "#0A37A8",   /* Egyptian Blue */

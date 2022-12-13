@@ -49,6 +49,10 @@ export const addDevit = ({ avatar, content, img, userId, userName }) => {
   })
 }
 
+export const deleteDevit = (id) => {
+  return db.collection("devits").doc(id).delete()
+}
+
 const mapDevitFromFirebaseToDevitObject = (doc) => {
   const data = doc.data()
   const id = doc.id
@@ -100,7 +104,7 @@ export const getPostsLiked = (uid) => {
     })
 }
 
-export const likeDevit = (post, userId, likesCount) => {
+export const likeDevit = async (post, userId, likesCount) => {
 
   /* Get posts liked  */
   /* const dataLocalStorage = JSON.parse(localStorage.getItem('likedPosts')); */
@@ -129,15 +133,15 @@ export const likeDevit = (post, userId, likesCount) => {
       likesPosts: arrayData.concat(post)
     })) */
 
-  return db
-    .collection("devits")
-    .doc(post)
-    .update({
-      likesCount: validate === undefined ? likesCount + 1 : likesCount - 1,
-    })
-    .then(() => { })
-    .catch((error) => {
-      console.log("Hubo un error: ", error)
-    })
+  try {
+    await db
+      .collection("devits")
+      .doc(post)
+      .update({
+        likesCount: validate === undefined ? likesCount + 1 : likesCount - 1
+      })
+  } catch (error) {
+    console.log("Hubo un error: ", error)
+  }
 
 }
