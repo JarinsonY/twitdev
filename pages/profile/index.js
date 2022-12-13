@@ -2,6 +2,7 @@ import Devit from "components/Devit"
 import Dropdown from "components/Dropdown"
 import Header from "components/Header"
 import Nav from "components/Nav"
+import NoDevit from "components/NoDevit"
 
 import { devitsProfile } from "firebase/client"
 import useUser from "hooks/useUser"
@@ -20,6 +21,10 @@ export default function ProfilePage() {
     }
     return () => unsubscribe && unsubscribe()
   }, [user])
+
+  const twitDevsForUniversity = timeline.filter(
+    (twitdev) => twitdev.forUniversity === true
+  ) // Filter the twitdevs for university
 
   return (
     <>
@@ -40,28 +45,32 @@ export default function ProfilePage() {
           )}
         </main>
         <section>
-          {timeline.map(
-            ({
-              likesCount,
-              createdAt,
-              img,
-              id,
-              userName,
-              avatar,
-              content,
-              userId,
-            }) => (
-              <Devit
-                avatar={avatar}
-                content={content}
-                createdAt={createdAt}
-                likesCount={likesCount}
-                id={id}
-                img={img}
-                key={id}
-                userId={userId}
-                userName={userName}
-              />
+          {twitDevsForUniversity.length === 0 ? (
+            <NoDevit />
+          ) : (
+            twitDevsForUniversity.map(
+              ({
+                likesCount,
+                createdAt,
+                img,
+                id,
+                userName,
+                avatar,
+                content,
+                userId,
+              }) => (
+                <Devit
+                  avatar={avatar}
+                  content={content}
+                  createdAt={createdAt}
+                  likesCount={likesCount}
+                  id={id}
+                  img={img}
+                  key={id}
+                  userId={userId}
+                  userName={userName}
+                />
+              )
             )
           )}
         </section>
@@ -102,6 +111,7 @@ export default function ProfilePage() {
         }
 
         .container{
+          width: 100%;
           overflow-y: auto;
           flex-direction: column;
           height: calc(100% - 57px);

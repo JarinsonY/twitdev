@@ -1,6 +1,7 @@
 import Devit from "components/Devit"
 import Header from "components/Header"
 import Nav from "components/Nav"
+import NoDevit from "components/NoDevit"
 
 import { listenLatestDevits } from "firebase/client"
 import useUser from "hooks/useUser"
@@ -20,6 +21,10 @@ export default function HomePage() {
     return () => unsubscribe && unsubscribe()
   }, [user])
 
+  const twitDevsForUniversity = timeline.filter(
+    (twitdev) => twitdev.forUniversity === true
+  ) // Filter the twitdevs for university
+
   return (
     <>
       <Head>
@@ -27,28 +32,32 @@ export default function HomePage() {
       </Head>
       <Header titlePage='Home' />
       <section>
-        {timeline.map(
-          ({
-            likesCount,
-            createdAt,
-            img,
-            id,
-            userName,
-            avatar,
-            content,
-            userId,
-          }) => (
-            <Devit
-              avatar={avatar}
-              content={content}
-              createdAt={createdAt}
-              likesCount={likesCount}
-              id={id}
-              img={img}
-              key={id}
-              userId={userId}
-              userName={userName}
-            />
+        {twitDevsForUniversity.length === 0 ? (
+          <NoDevit />
+        ) : (
+          twitDevsForUniversity.map(
+            ({
+              likesCount,
+              createdAt,
+              img,
+              id,
+              userName,
+              avatar,
+              content,
+              userId,
+            }) => (
+              <Devit
+                avatar={avatar}
+                content={content}
+                createdAt={createdAt}
+                likesCount={likesCount}
+                id={id}
+                img={img}
+                key={id}
+                userId={userId}
+                userName={userName}
+              />
+            )
           )
         )}
       </section>
@@ -57,6 +66,7 @@ export default function HomePage() {
 
         section {
           /* flex: 1; */
+          width: 100%;
           flex: 1 1 auto;
           overflow-y: auto;
           height: calc(100% - 57px);

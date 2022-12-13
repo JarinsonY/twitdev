@@ -44,7 +44,11 @@ export default function Home() {
 
         <div className='divContent'>
           <h2>
-            Talk about development <br /> with developers 👨‍💻👩‍💻
+            Talk about development <br /> with developers
+          </h2>
+          <h2>
+            Share your knowledge and more
+            <br />👨‍💻👩‍💻
           </h2>
 
           {user === USER_STATES.NOT_LOGGED && (
