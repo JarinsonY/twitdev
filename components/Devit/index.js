@@ -32,7 +32,6 @@ export default function Devit({
     setVisible(false);
     // console.log("closed");
   };
-  console.log('statusPage', statusPage)
 
   const handleArticleClick = (e) => {
     e.preventDefault()
@@ -61,9 +60,6 @@ export default function Devit({
     const arrayData = dataLocalStorage2.split(',').find(doc => doc === id)
     return Boolean(arrayData)
   }
-
-  /* console.log('router', router.pathname.split('/'))
-  const isStatus */
 
   return (
     <>
