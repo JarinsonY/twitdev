@@ -14,11 +14,11 @@ export default function DevitPage(props) {
       <header>
         <Link href="/home">
           <a>
-            <h2>Devit</h2>
+            <h2>◀ Devit</h2>
           </a>
         </Link>
       </header>
-      <Devit {...props} />
+      <Devit {...props} statusPage={true} />
       <Nav position="absolute" />
       <style jsx>{`
         header {

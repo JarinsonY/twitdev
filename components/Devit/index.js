@@ -6,12 +6,12 @@ import { deleteDevit, likeDevit } from "firebase/client"
 import useDateTimeFormat from "hooks/useDateTimeFormat"
 import useTimeAgo from "hooks/useTimeAgo"
 import useUser from "hooks/useUser"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { colors } from "styles/theme"
 
 export default function Devit({
+  statusPage = false,
   avatar,
   userId,
   userName,
@@ -32,10 +32,11 @@ export default function Devit({
     setVisible(false);
     // console.log("closed");
   };
+  console.log('statusPage', statusPage)
 
   const handleArticleClick = (e) => {
     e.preventDefault()
-    router.push(`/status/${id}`)
+    !statusPage && router.push(`/status/${id}`)
   }
 
   const handleLikeClick = (e) => {
@@ -48,7 +49,9 @@ export default function Devit({
   }
 
   const handleDeleteClick = () => {
-    deleteDevit(id);
+    deleteDevit(id).then(() => {
+      router.push("/home")
+    })
     setVisible(false);
   }
 
@@ -59,9 +62,12 @@ export default function Devit({
     return Boolean(arrayData)
   }
 
+  /* console.log('router', router.pathname.split('/'))
+  const isStatus */
+
   return (
     <>
-      <article>
+      <article onClick={handleArticleClick}>
         <div className="avatar">
           <Avatar src={avatar} alt={userName} />
         </div>
@@ -70,11 +76,11 @@ export default function Devit({
             <div className="info">
               <strong>{userName}</strong>
               <span> · </span>
-              <Link href={`/status/[${id}]`}>
-                <a>
-                  <time title={createdAtFormated}>{timeago}</time>
-                </a>
-              </Link>
+
+              <a>
+                <time title={createdAtFormated}>{timeago}</time>
+              </a>
+
             </div>
             <div className="rightContent">
               <div className="likes" onClick={handleLikeClick}>
@@ -88,7 +94,7 @@ export default function Devit({
               )}
             </div>
           </header>
-          <div onClick={handleArticleClick}>
+          <div>
             <p>{content}</p>
             {img && <img src={img} />}
           </div>
